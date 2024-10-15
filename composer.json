@@ -1,0 +1,26 @@
+{
+    "name": "diankemao/translate",
+    "description": "translate SDK",
+    "keywords": ["baidu", "youdao", "translate", "翻译", "SDK"],
+    "support": {
+        "issues": "https://github.com/diankemao/translate/issues",
+        "source": "https://github.com/diankemao/translate"
+    },
+    "authors": [
+        {
+            "name": "Allen.Liang",
+            "email": "diankemao@gmail.com"
+        }
+    ],
+	"require": {
+	    "php": ">=7.1.3",
+	    "monolog/monolog": "^1.23 || ^2.0",
+	    "guzzlehttp/guzzle": "^6.2 || ^7.0"
+	},
+    "autoload": {
+        "psr-4": {
+            "Diankemao\\Translate\\": "src"
+        }
+    },
+    "license": "MIT"
+}
