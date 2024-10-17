@@ -57,24 +57,11 @@ class Translate
      */
     public function trans($q, $to = 'en', $from = 'auto')
     {
-        $success = false;
-
         foreach ($this->strategy() as $value) {
-            try {
-                $res = $this->driver($value)->trans($q, $to, $from);
-                $success = true;
-
-                break;
-            } catch (Exception $e) {
-                continue;
-            }
+            $res = $this->driver($value)->trans($q, $to, $from);
         }
 
-        if (!$success) {
-            throw new NoGatewayAvailableException();
-        }
-
-        return $res;
+        return $res ?? '';
     }
 
     /**

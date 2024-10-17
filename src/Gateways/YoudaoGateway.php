@@ -79,8 +79,18 @@ class YoudaoGateway implements Translation
         $res = $this->post($this->gateway, $this->query);
 
         if (!isset($res['errorCode']) || $res['errorCode'] !== '0') {
+			$msg = 'translate error';
+			if (strpos($res['errorCode'], '411') !== false) {
+				$msg = '翻译访问频率受限,请稍后访问';
+			} else if ($res['errorCode'] === '412') {
+				$msg = '翻译长请求过于频繁，请稍后访问';
+			} else if ($res['errorCode'] === '401') {
+				$msg = '翻译账户已经欠费，请进行账户充值';
+			} else if ($res['errorCode'] === '1412') {
+				$msg = '翻译超过最大识别字节数';
+			}
             throw new GatewayException(
-                'get result error, error code' . $res['errorCode'],
+                $msg . ', error code: ' . $res['errorCode'],
                 $res['errorCode'],
                 $res
             );
